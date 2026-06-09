@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ling's Illustration Greenhouse</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; 
+            color: #2b2b2b;
+            position: relative;
+            overflow-x: hidden; 
+        }
+        
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        nav {
+            background-color: #26c454; 
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff; 
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        nav .menu a {
+            color: #ffffff; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-left: 20px;
+            transition: opacity 0.2s;
+        }
+        nav .menu a:hover {
+            opacity: 0.8;
+        }
+
+        .banner {
+            background-color: #ffffff; 
+            padding: 50px 0 40px 0;
+            text-align: center;
+            position: relative;
+            z-index: 10; 
+        }
+        .banner h1 {
+            margin: 0 0 12px 0;
+            font-size: 2.3rem;
+            color: #de438d;
+            letter-spacing: 1px;
+        }
+
+        .title-icon-divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; 
+            margin: 15px 0 20px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .icon-pink { color: #de438d; }
+        .icon-green { color: #26c454; }
+
+        .banner p {
+            margin: 0;
+            color: #26c454; 
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .main-layout {
+            display: flex;
+            gap: 40px;
+            padding: 20px 0 20px 0;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10; 
+        }
+
+        .left-column {
+            flex: 1.6; 
+            min-width: 320px;
+        }
+
+        .right-column {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .column-title {
+            font-size: 1.4rem;
+            color: #2b2b2b;
+            margin-top: 0;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .gallery-compact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px; 
+        }
+
+        .work-item {
+            flex: calc(50% - 8px); 
+            min-width: 220px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-sizing: border-box;
+            border: 1px solid #eee; 
+            transition: transform 0.2s;
+        }
+        .work-item:hover {
+            transform: scale(1.02);
+        }
+        .work-img-container {
+            width: 100%;
+            background-color: #f4f3ef;
+            display: block; 
+        }
+        .work-img-container img {
+            width: 100%;
+            height: auto; 
+            display: block;
+        }
+        .work-info {
+            padding: 12px;
+        }
+        .work-info h3 {
+            margin: 0 0 4px 0;
+            color: #de438d;
+            font-size: 1rem;
+        }
+        .work-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .divider-island {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-sizing: border-box;
+            border: 2px solid #caebd1; 
+            position: relative;
+            z-index: 10;
+        }
+
+        .qa-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .qa-item {
+            background-color: #fff0f5; 
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 5px solid #de438d;
+        }
+        .qa-item h4 {
+            margin: 0 0 6px 0;
+            color: #de438d;
+            font-size: 0.95rem;
+        }
+        .qa-item p {
+            margin: 0;
+            color: #444;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .project-item h4 {
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+            color: #2b2b2b;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background-color: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #26c454; 
+            border-radius: 20px;
+        }
+
+        .intro-text-box {
+            background-color: #ffffff; 
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border: 2px solid #ffccd8; 
+        }
+        .intro-text-box strong {
+            color: #de438d;
+        }
+
+        .interactive-box {
+            background-color: #ffffff;
+            border: 3px solid #cef2d6; 
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        #interaction-canvas {
+            width: 100%;
+            height: 350px; 
+            background-color: #ffffff; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+        .canvas-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ccc;
+            pointer-events: none;
+            font-size: 0.85rem;
+        }
+
+        /* 🛠️ 核心修正：美化並強制拉寬表單，徹底消滅階梯移位 */
+        .contact-box {
+            background-color: #ffffff; 
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #caebd1; 
+            margin-bottom: 30px;
+            box-sizing: border-box;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #26c454; 
+        }
+        /* 🌟 核心魔法：強制分配 100% 寬度且不超出邊框 */
+        .form-group input, .form-group textarea {
+            width: 100% !important;
+            padding: 12px !important;
+            border: 1px solid #caebd1 !important;
+            background-color: #ffffff !important;
+            color: #2b2b2b !important;
+            font-size: 0.9rem !important;
+            box-sizing: border-box !important;
+            border-radius: 8px !important;
+            display: block !important;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #de438d !important;
+            box-shadow: 0 0 5px rgba(222, 67, 141, 0.2);
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: #de438d;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            margin-top: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #26c454; 
+        }
+
+        .right-link-island {
+            background-color: #ffffff;
+            border: 2px solid #caebd1;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+        .link-banner-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .banner-link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff;
+            border: 1px solid #eee;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2b2b2b;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .banner-link-item:hover {
+            border-color: #de438d;
+            background-color: #fff0f5;
+            transform: translateX(4px);
+        }
+        .banner-link-item .arrow {
+            color: #de438d;
+            font-size: 1rem;
+        }
+
+        /* 🌸 右欄最底部的電子小花園區塊樣式 */
+        .cyber-garden-island {
+            background-color: #ffffff;
+            border: 2px solid #ffccd8; 
+            border-radius: 12px;
+            padding: 22px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        .garden-bed {
+            background-color: #fcfbf7;
+            border: 1px dashed #26c454;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 12px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            letter-spacing: 4px;
+        }
+
+        /* 🚀 3D 滿版橫向島嶼區塊樣式 */
+        .full-width-3d-island {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 50px 0;
+            margin: 40px 0 0 0;
+            border-top: 2px solid #cef2d6;
+            position: relative;
+            z-index: 10;
+        }
+        .3d-flexible-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .3d-info-side {
+            flex: 1;
+            min-width: 300px;
+        }
+        .3d-info-side h2 {
+            font-size: 1.8rem;
+            color: #de438d;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .3d-info-side p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+            margin: 0 0 20px 0;
+        }
+        .3d-canvas-side {
+            flex: 2; 
+            min-width: 320px;
+            background-color: #ffffff;
+            border: 2px solid #caebd1;
+            border-radius: 16px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        #3d-canvas {
+            width: 100%;
+            height: 480px; 
+            background-color: #ffffff; 
+            display: block;
+            cursor: move;
+        }
+
+        .sparkle-follower {
+            position: fixed; 
+            width: 24px;
+            height: 24px;
+            background-color: #de438d;
+            clip-path: polygon(50% 0%, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0% 50%, 37% 37%);
+            pointer-events: none; 
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease-out;
+        }
+
+        .ambient-bubble {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none; 
+            z-index: 1; 
+            opacity: 0.6;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-15vh) translateX(var(--wobble));
+                opacity: 0;
+            }
+        }
+
+        .right-column .work-item {
+            width: 100%; 
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #26c454; 
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sparkle-follower" id="magic-star"></div>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">✦ LING_IGNIL</a>
+            <div class="menu">
+                <a href="#">KIRA</a>
+                <a href="#interaction">MOFU</a>
+                <a href="#contact">MIZUSHII</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="banner">
+        <div class="container">
+            <h1>✦ Ling's house ✦</h1>
+            
+            <div class="title-icon-divider">
+                <span class="icon-pink">✦</span>
+                <span class="icon-green">✕</span>
+                <span class="icon-pink">⦁</span>
+                <span class="icon-green">✦</span>
+                <span class="icon-pink">✕</span>
+                <span class="icon-green">⦁</span>
+                <span class="icon-pink">✦</span>
+            </div>
+
+            <p>✦ 神聖菖莆田✦  嘉年華派對✦</p>
+        </div>
+    </header>
+
+    <main class="container main-layout">
+        
+        <section class="left-column">
+            <h2 class="column-title">✦ GREENHOUSE</h2>
+            <div class="gallery-compact-grid">
+                
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art01.png" alt="電繪作品一">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 餐具の女 </h3>
+                        <p>我花重金聘請喜歡的優格幫我畫。</p>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art02.png" alt="電繪作品二">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 皇帝面具 </h3>
+                        <p>我真的很喜歡祐介我真的很喜歡祐介。</p>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art03.png" alt="電繪作品三">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 是的兄妹 </h3>
+                        <p>我喜歡骨科嗎不知道欸你說呢</p>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art04.png" alt="電繪作品四">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 奶油の女 </h3>
+                        <p>拜託大溪畫的我旋轉三百回。</p>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art05.png" alt="電繪作品五">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 是的三小隻 </h3>
+                        <p>是的這就是青梅竹馬的浪漫。</p>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-img-container">
+                        <img src="image/art06.png" alt="電繪作品六">
+                    </div>
+                    <div class="work-info">
+                        <h3>✦ 三人三耳 </h3>
+                        <p>我沒有青梅竹馬所以 ✦ 幻想很美好。</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="divider-island">
+                <h3 style="margin-top: 0; color: #de438d;">✦ GREENHOUSE</h3>
+                <div style="font-size: 0.85rem; color: #666;">菖蒲田生存常識。</div>
+                <div class="qa-grid">
+                    <div class="qa-item">
+                        <h4>Q1 ✦ 平常吃自己時最推薦使用哪一種湯匙或叉子？</h4>
+                        <p>強烈推薦蕭貪專用的特大號鋼叉。不僅可以一次撈起大量的混凝土與義大利麵，在海拉魯冒險時還能順便當成防身武器，一物多用 ✦</p>
+                    </div>
+                    <div class="qa-item">
+                        <h4>Q2 ✦ 就讀海女美術大學有什麼好處嗎？</h4>
+                        <p>好處是大家都是海產，快沒錢的時候可以聚在一起研究如何吃自己。</p>
+                    </div>
+                    <div class="qa-item">
+                        <h4>Q3 ✦ 請問做作業該如何保持理智？</h4>
+                        <p>完全不要保持理智。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-island" style="border-color: #ffccd8;">
+                <h3 style="margin-top: 0; color: #26c454;">✦ PARTY STATUS</h3>
+                <div style="font-size: 0.85rem; color: #666;">孵化中的派對連載：</div>
+                <div class="project-list">
+                    <div class="project-item">
+                        <h4>✦ 屁眼派對</h4>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="project-item">
+                        <h4>✦ 大麻祭典</h4>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%; background-color: #de438d;"></div></div>
+                    </div>
+                    <div class="project-item">
+                        <h4>✦ 跳蚤市場</h4>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 95%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-column">
+            
+            <h2 class="column-title">✦ WHAT'S WRONG WITH ME</h2>
+            <div class="intro-text-box">
+                我是餐具之女，我喜歡湯匙跟叉子。 <strong>我辭職了，因為我是草莓族</strong>，快沒錢了我就吃自己。我居住於海拉魯並就讀<strong>海女美術大學</strong>。最後我想說的是蕭貪。
+            </div>
+
+            <div id="interaction" class="interactive-box">
+                <h3 style="margin-top: 0; color: #de438d;">✦ GAME GAME </h3>
+                <div style="font-size: 0.85rem; color: #666; margin-bottom: 10px;">팔랑귀 팔랑귀 That’s pink, pink 還有 green, green</div>
+                <div id="interaction-canvas">
+                    <div class="canvas-hint">✦✦✦✦✦✦✦✦✦✦</div>
+                </div>
+            </div>
+
+            <div id="contact" class="contact-box">
+                <h3 style="margin-top: 0; color: #26c454; margin-bottom: 20px;">✦ MARRY ME</h3>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('郵件發送成功！');">
+                    <div class="form-group">
+                        <label for="name">NAME / 暱稱</label>
+                        <input type="text" id="name" placeholder="怎麼稱呼妳呢？" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMAIL / 聯絡信箱</label>
+                        <input type="email" id="email" placeholder="讓我可以回信給妳的地址" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">MESSAGE / 訊息內容</label>
+                        <textarea id="message" rows="4" placeholder="想對我說的話，或是..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND MAIL ✉</button>
+                </form>
+            </div>
+
+            <div class="work-item">
+                <div class="work-img-container">
+                    <img src="image/art07.png" alt="精選電繪作品七">
+                </div>
+                <div class="work-info">
+                    <h3>✦ 斜瀏海天團 </h3>
+                    <p>我愛斜瀏海陶吉吉男神 ✦</p>
+                </div>
+            </div>
+
+            <div class="right-link-island">
+                <h3 style="margin-top: 0; color: #26c454;">✦ CYBER PORTAL</h3>
+                <div style="font-size: 0.8rem; color: #666;">其他秘密基地 ✦</div>
+                <div class="link-banner-grid">
+                    <a href="https://facebook.com" target="_blank" class="banner-link-item">
+                        <span>✦ CONNECT / 交流</span>
+                        <span class="arrow">➔</span>
+                    </a>
+                    <a href="#" class="banner-link-item">
+                        <span>✦ LING_ILLUST.EXE / 歷史備份庫</span>
+                        <span class="arrow">➔</span>
+                    </a>
+                    <a href="#" class="banner-link-item">
+                        <span>✦ SHAUTAN PARTY / 蕭貪嘉年華</span>
+                        <span class="arrow">➔</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cyber-garden-island">
+                <h3 style="margin-top: 0; color: #de438d; font-size: 1.1rem; letter-spacing: 1px;">✦ MINI GARDEN</h3>
+                
+                <div class="garden-bed">
+                    🌸 🌿 ✦ 🪻 ✕ 🍃 ⦁ 🌸<br>
+                    🌱 ⦁ 🌷 ✦ 🌿 ✕ 🍀 ✦ 🌷<br>
+                    🌺 ✕ 🍃 ✦ 🌸 ⦁ 🪻 ✕ 🌿
+                </div>
+                
+                <div style="font-size: 0.75rem; color: #26c454; font-weight: bold; margin-top: 10px; letter-spacing: 2px;">
+                    ✦
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <section class="full-width-3d-island" id="play-zone">
+        <div class="container 3d-flexible-grid">
+            <div class="3d-info-side">
+                <h2>✦ PLAY WITH</h2>
+                <p>
+                    養一個賽博寵物不會像塔麻可吉一樣一直死。
+                </p>
+            </div>
+            <div class="3d-canvas-side">
+                <canvas id="3d-canvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ling. KIRA MOFU MIZUSHII. 歡迎歸宅 ✦</p>
+        </div>
+    </footer>
+
+    <script>
+        // 右欄白畫布粒子特效
+        const canvas = document.getElementById('interaction-canvas');
+        canvas.addEventListener('mousemove', (e) => {
+            const colors = ['#de438d', '#26c454']; 
+            for (let i = 0; i < 2; i++) {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const dot = document.createElement('div');
+                dot.style.position = 'absolute';
+                const rect = canvas.getBoundingClientRect();
+                const offsetX = (Math.random() * 10 - 5);
+                const offsetY = (Math.random() * 10 - 5);
+                const x = e.clientX - rect.left + offsetX;
+                const y = e.clientY - rect.top + offsetY;
+                dot.style.left = x + 'px';
+                dot.style.top = y + 'px';
+                const initSize = Math.random() * 2 + 9;
+                dot.style.width = initSize + 'px';
+                dot.style.height = initSize + 'px';
+                dot.style.borderRadius = '50%';
+                dot.style.backgroundColor = randomColor;
+                dot.style.pointerEvents = 'none';
+                dot.style.transition = 'all 3.5s cubic-bezier(0.05, 0.7, 0.1, 1)';
+                canvas.appendChild(dot);
+                setTimeout(() => {
+                    const moveX = (Math.random() * 50 - 20);
+                    const moveY = (Math.random() * 50 - 20);
+                    dot.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.8)`;
+                    dot.style.opacity = '0';
+                }, 50);
+                setTimeout(() => { dot.remove(); }, 3500);
+            }
+        });
+
+        // 滑鼠游標四芒星跟隨
+        const star = document.getElementById('magic-star');
+        window.addEventListener('mousemove', (e) => {
+            star.style.left = e.clientX + 'px';
+            star.style.top = e.clientY + 'px';
+        });
+
+        // 背景夢幻上升泡泡
+        function createBubble(startX) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('ambient-bubble');
+            const colors = ['rgba(222, 67, 141, 0.15)', 'rgba(38, 196, 84, 0.15)']; 
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 30 + 15;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.backgroundColor = randomColor;
+            bubble.style.border = `1.5px solid ${randomColor.replace('0.15', '0.4')}`; 
+            bubble.style.left = startX + 'px';
+            bubble.style.top = '102vh'; 
+            const duration = Math.random() * 6 + 6;
+            const wobble = Math.random() * 100 - 50;
+            bubble.style.setProperty('--wobble', wobble + 'px');
+            bubble.style.animationDuration = duration + 's';
+            document.body.appendChild(bubble);
+            setTimeout(() => { bubble.remove(); }, duration * 1000);
+        }
+
+        setInterval(() => {
+            const randomX = Math.random() * window.innerWidth;
+            createBubble(randomX);
+        }, 1200);
+
+        // 3D 核心星軌聯動
+        const canvas3d = document.getElementById('3d-canvas');
+        const ctx3d = canvas3d.getContext('2d');
+        
+        function resize3DCanvas() {
+            const rect = canvas3d.parentElement.getBoundingClientRect();
+            canvas3d.width = rect.width - 30;
+            canvas3d.height = 480;
+        }
+        window.addEventListener('resize', resize3DCanvas);
+        resize3DCanvas();
+
+        const corePoints = [
+            {x: 0, y: -100, z: 0}, {x: 0, y: 100, z: 0},
+            {x: -45, y: 0, z: -45}, {x: 45, y: 0, z: -45},
+            {x: 45, y: 0, z: 45}, {x: -45, y: 0, z: 45},
+            {x: -110, y: 0, z: 0}, {x: 110, y: 0, z: 0},
+            {x: 0, y: 0, z: -110}, {x: 0, y: 0, z: 110}
+        ];
+        const coreLinks = [
+            [0,2], [0,3], [0,4], [0,5], [1,2], [1,3], [1,4], [1,5],
+            [2,3], [3,4], [4,5], [5,2], [0,6], [0,7], [0,8], [0,9],
+            [1,6], [1,7], [1,8], [1,9], [2,6], [5,6], [3,7], [4,7]
+        ];
+
+        const bgPoints = [];
+        const bgLinks = [];
+        const numRings = 3;
+        const ptsPerRing = 12;
+        const ringRadii = [180, 240, 290];
+
+        for(let r = 0; r < numRings; r++) {
+            const radius = ringRadii[r];
+            const startIdx = corePoints.length + bgPoints.length;
+            for(let i = 0; i < ptsPerRing; i++) {
+                const angle = (i / ptsPerRing) * Math.PI * 2;
+                let x = Math.cos(angle) * radius;
+                let y = Math.sin(angle) * radius * (r === 0 ? 0.3 : r === 1 ? -0.5 : 0.1);
+                let z = Math.sin(angle) * radius * (r === 0 ? 0.9 : r === 1 ? 0.6 : -0.9);
+                bgPoints.push({x: x, y: y, z: z});
+                const curr = startIdx + i;
+                const next = startIdx + ((i + 1) % ptsPerRing);
+                bgLinks.push([curr, next]);
+                if (i % 4 === 0) {
+                    bgLinks.push([curr, Math.floor(Math.random() * corePoints.length)]);
+                }
+            }
+        }
+
+        const allPoints = [...corePoints, ...bgPoints];
+        let mouseX = 0, mouseY = 0;
+        let targetRotateX = 0, targetRotateY = 0;
+        let currentRotateX = 0, currentRotateY = 0;
+
+        canvas3d.addEventListener('mousemove', (e) => {
+            const rect = canvas3d.getBoundingClientRect();
+            mouseX = e.clientX - rect.left - canvas3d.width/2;
+            mouseY = e.clientY - rect.top - canvas3d.height/2;
+            targetRotateY = mouseX * 0.009; 
+            targetRotateX = mouseY * 0.009;
+        });
+
+        canvas3d.addEventListener('mouseleave', () => {
+            targetRotateX = 0; targetRotateY = 0;
+        });
+
+        function render3D() {
+            ctx3d.clearRect(0, 0, canvas3d.width, canvas3d.height);
+            currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+            currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+            const baseAngleY = Date.now() * 0.0003 + currentRotateY;
+            const baseAngleX = currentRotateX;
+            const cosX = Math.cos(baseAngleX), sinX = Math.sin(baseAngleX);
+            const cosY = Math.cos(baseAngleY), sinY = Math.sin(baseAngleY);
+
+            const projectedPoints = allPoints.map(p => {
+                let y1 = p.y * cosX - p.z * sinX;
+                let z1 = p.y * sinX + p.z * cosX;
+                let x2 = p.x * cosY + z1 * sinY;
+                let z2 = -p.x * sinY + z1 * cosY;
+                const distance = 400;
+                const scale = distance / (distance + z2);
+                return { x: x2 * scale + canvas3d.width / 2, y: y1 * scale + canvas3d.height / 2, z2: z2 };
+            });
+
+            bgLinks.forEach((link, index) => {
+                const p1 = projectedPoints[link[0]];
+                const p2 = projectedPoints[link[1]];
+                ctx3d.beginPath();
+                ctx3d.moveTo(p1.x, p1.y);
+                ctx3d.lineTo(p2.x, p2.y);
+                ctx3d.strokeStyle = (index % 2 === 0) ? 'rgba(222, 67, 141, 0.28)' : 'rgba(38, 196, 84, 0.28)';
+                ctx3d.lineWidth = 1.2;
+                ctx3d.stroke();
+            });
+
+            coreLinks.forEach((link, index) => {
+                const p1 = projectedPoints[link[0]];
+                const p2 = projectedPoints[link[1]];
+                ctx3d.beginPath();
+                ctx3d.moveTo(p1.x, p1.y);
+                ctx3d.lineTo(p2.x, p2.y);
+                ctx3d.strokeStyle = (index % 2 === 0) ? '#de438d' : '#26c454'; 
+                ctx3d.lineWidth = 2.2;
+                ctx3d.lineCap = 'round';
+                ctx3d.stroke();
+            });
+
+            projectedPoints.forEach((p, idx) => {
+                if(idx > corePoints.length && idx % 3 === 0) {
+                    ctx3d.beginPath();
+                    ctx3d.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                    ctx3d.fillStyle = idx % 2 === 0 ? '#de438d' : '#26c454';
+                    ctx3d.fill();
+                }
+            });
+
+            requestAnimationFrame(render3D);
+        }
+        render3D();
+    </script>
+
+</body>
+</html>
